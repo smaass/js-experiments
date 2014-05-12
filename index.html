@@ -12,15 +12,27 @@
     <script src="./inc/base64binary.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <style>
+        body {
+            background: #eee;
+        }
+        #main {
+            background: white;
+            width: 400px;
+            margin: auto;
+            padding: 1%;
+            border-radius: 10px;
+            box-shadow: 0 0 8px #B0B0B0;
+        }
         #marker {
-            width: 100px;
-            padding: 0 10px;
+            width: 70%;
+            margin: auto;
+            padding: 0 10%;
             background: black;
             color: #00f;
             overflow: hidden;
             text-align: center;
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-size: 5em;
+            border-radius: 10px;
         }
         #marker .good {
             float: left;
@@ -30,30 +42,56 @@
             float: right;
             color: #f00;
         }
+        #feedback {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 2em;
+        }
+        #interval_buttons {
+            margin: auto;
+            width: 90%;
+        }
+        .button_interval {
+            height: 38px;
+            width: 32%;
+            margin:1px;
+        }
+        #repeat {
+            width: 33%;
+            margin-left: 33%;
+            margin-right: 33%;
+            margin-top: 5%;
+            height: 38px;
+        }
     </style>
 </head>
 
 <body>
-    <div id="marker">
-        <div class="good">-</div>/
-        <div class="bad">-</div>
+    <div id="main">
+        <div id="marker">
+            <div class="good">-</div>/
+            <div class="bad">-</div>
+        </div>
+        <div id="feedback">Loading...</div><br>
+        
+        <div id="interval_buttons">
+            <button class="button_interval" data-value="0">Prime</button>
+            <button class="button_interval" data-value="1">Minor 2nd</button>
+            <button class="button_interval" data-value="2">Major 2nd</button>
+            <button class="button_interval" data-value="3">Minor 3rd</button>
+            <button class="button_interval" data-value="4">Major 3rd</button>
+            <button class="button_interval" data-value="5">Perfect 4th</button>
+            <button class="button_interval" data-value="6">Tritone</button>
+            <button class="button_interval" data-value="7">Perfect 5th</button>
+            <button class="button_interval" data-value="8">Minor 6th</button>
+            <button class="button_interval" data-value="9">Major 6th</button>
+            <button class="button_interval" data-value="10">Minor 7th</button>
+            <button class="button_interval" data-value="11">Major 7th</button>
+            <button class="button_interval" data-value="12">Octave</button>
+        </div>
+        
+        <button id="repeat" data-value="0">Repeat</button>
     </div>
-    <div id="feedback">Loading...</div><br>
-    <button id="repeat" data-value="0">Repeat interval</button><br><br>
-    <button class="button_interval" data-value="0">Prime</button>
-    <button class="button_interval" data-value="1">Minor 2nd</button>
-    <button class="button_interval" data-value="2">Major 2nd</button>
-    <button class="button_interval" data-value="3">Minor 3rd</button>
-    <button class="button_interval" data-value="4">Major 3rd</button>
-    <button class="button_interval" data-value="5">Perfect 4th</button>
-    <button class="button_interval" data-value="6">Tritone</button>
-    <button class="button_interval" data-value="7">Perfect 5th</button>
-    <button class="button_interval" data-value="8">Minor 6th</button>
-    <button class="button_interval" data-value="9">Major 6th</button>
-    <button class="button_interval" data-value="10">Minor 7th</button>
-    <button class="button_interval" data-value="11">Major 7th</button>
-    <button class="button_interval" data-value="12">Octave</button>
-    
     <script type="text/javascript">
         var velocity = 127;
         var delay = 0.8;
