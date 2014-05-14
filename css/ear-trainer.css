@@ -37,13 +37,11 @@ button {
     border-top-right-radius: 12px;
 }
 #menu ul li a {
-    padding: 17px 16px 16px 16px;
+    padding: 15px;
     background:#6DBED6;
     text-decoration:none;
-    font:bold 14px Helvetica,Sans-Serif;
-    letter-spacing:-1px;
+    font:bold 13px Helvetica,Sans-Serif;
     color:#000000;
-    text-shadow: #eee 0px 0px 2px;
 }
 #menu ul li a.active {
     background: #28ACD4 !important;
