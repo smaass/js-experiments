@@ -34,7 +34,8 @@ function GameData() {
         bad: 0,
         velocity: 127,
         delay: 0.8,
-        baseNote: 0
+        baseNote: 0,
+        firstTime: true
     }
 }
 
@@ -89,7 +90,13 @@ function startGame(name) {
 
 function startIntervalsGame() {
     activateIntervalButtons();
-    nextInterval();
+    if (intervalsData.firstTime) {
+        nextInterval();
+        intervalsData.firstTime = false;
+    }
+    else {
+        playInterval();
+    }
     $("#feedback").html("Select the interval");
     updateMarker(intervalsData);
 }
@@ -116,7 +123,13 @@ function activateIntervalButtons() {
 
 function startChordsGame() {
     activateChordButtons();
-    nextChord();
+    if (chordsData.firstTime) {
+        nextChord();
+        chordsData.firstTime = false;
+    }
+    else {
+        playCurrentChord();
+    }
     $("#feedback").html("Select the chord");
     updateMarker(chordsData);
 }
@@ -157,7 +170,7 @@ function nextInterval() {
 }
 
 function nextChord() {
-    chordsData.baseNote = randInt(40, 80);
+    chordsData.baseNote = randInt(30, 80);
     chordsData.randomChord();
     playChord(chordsData.currentChord, chordsData.delay);
 }
