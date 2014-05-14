@@ -1,6 +1,9 @@
 body {
     background: #eee;
 }
+button {
+    cursor: pointer;
+}
 #content {
     font-family: "Arial";
     width: 400px;
@@ -22,6 +25,7 @@ body {
     list-style: none;
 }
 #menu ul li {
+    cursor: pointer;
     display: inline;
     float: left;
     margin-bottom: 0;
@@ -87,11 +91,11 @@ body {
     text-align: center;
     font-size: 2em;
 }
-#interval_buttons {
+#selection_buttons {
     margin: auto;
     width: 100%;
 }
-.button_interval {
+.button_selection {
     height: 38px;
     width: 32%;
     margin:1px;
