@@ -3,7 +3,13 @@ var midiLoaded = false;
 var chordTypes = {
     min: [0, 3, 7],
     maj: [0, 4, 7],
-    sus4: [0, 5, 7]
+    dim: [0, 3, 6],
+    aug: [0, 4, 8],
+    sus2: [0, 2, 7],
+    sus4: [0, 5, 7],
+    seventh: [0, 4, 7, 10],
+    m7: [0, 3, 7, 10],
+    maj7: [0, 4, 7, 11]
 };
 var intervalsData = IntervalsData();
 var chordsData = ChordsData();
@@ -40,7 +46,7 @@ function GameData() {
 }
 
 $(document).ready(function() {
-    loadPlayMode();
+    loadPlayMode(true);
 
     MIDI.loadPlugin({
         soundfontUrl: "./soundfont/",
@@ -49,7 +55,7 @@ $(document).ready(function() {
             MIDI.programChange(0, 0); // Grand piano
             MIDI.programChange(1, 118); // Synth drum
             midiLoaded = true;
-            startGame(getPlayMode());
+            startGame(getPlayMode(false));
         }
     });
 });
@@ -58,16 +64,24 @@ $(".button_menu").click(function() {
     if (!$(this).hasClass("active")) {
         $("#menu").find(".active").removeClass("active");
         $(this).addClass("active");
-        loadPlayMode();
+        loadPlayMode(false);
     }
 });
 
-function getPlayMode() {
+function getPlayMode(fromHash) {
+    if (fromHash) {
+        var tag = window.location.hash.substring(1);
+        if (tag == "intervals" || tag == "chords") {
+            $("#menu").find(".active").removeClass("active");
+            $("a[data-mode='" + tag + "']").addClass("active");
+            return tag;
+        }
+    }
     return $("#menu").find(".active").data("mode");
 }
 
-function loadPlayMode() {
-    var name = getPlayMode();
+function loadPlayMode(fromHash) {
+    var name = getPlayMode(fromHash);
     $.get(name + ".html", function(data) {
         $("#main").html(data);
         if (!midiLoaded) {
@@ -170,7 +184,7 @@ function nextInterval() {
 }
 
 function nextChord() {
-    chordsData.baseNote = randInt(30, 80);
+    chordsData.baseNote = randInt(40, 80);
     chordsData.randomChord();
     playChord(chordsData.currentChord, chordsData.delay);
 }
