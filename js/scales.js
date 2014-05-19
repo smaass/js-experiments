@@ -75,5 +75,7 @@ function playScale(scale, noteDelay) {
 			setTimeout(function() { playScaleRec(notes) }, noteDelay*1000);
 		}
 	};
-	playScaleRec(scale.slice());
+	var notes = scale.slice();
+	notes.push(scale[0] + 12);
+	playScaleRec(notes);
 }
